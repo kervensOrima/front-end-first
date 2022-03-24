@@ -1,0 +1,40 @@
+<app-header></app-header>
+
+<div id="layoutSidenav">
+  <app-left-menu></app-left-menu>
+
+  <div id="layoutSidenav_content">
+    <div class="container mt-4">
+      <div class="card rounded-0">
+        <div class="card-header ">
+          employee list
+          
+        </div>
+
+        <div class="card-body">
+          <div class="card-body">
+            <ul class='list-group rounded-0'>
+              <li class='list-group-item'> <b>ID employeee</b> {{ employee.id }}  </li>
+              <li class='list-group-item'> <b>Nom employee</b> {{ employee.nom }}  </li>
+              <li class='list-group-item'> <b>Prenom employee</b>  {{ employee.prenom }}  </li>
+              <li class='list-group-item'> <b>Date embauche employee</b>  {{ employee.dateEmbauche }}  </li>
+              <li class='list-group-item'> <b>Etat employee</b>  {{ employee.etat }}  </li>
+              <li class='list-group-item'> <b>Type contrat employee</b>  {{ employee.typeContrat }}  </li>
+              <li class='list-group-item'> <b>Contract actuel</b>  {{ employee.contrat_actuelle }}  </li>
+              <li class='list-group-item'> <b>Salaire employee</b> {{ employee.salaire }}  </li>
+              <li class='list-group-item'> 
+                {{employee.phones | json }}           
+              </li>
+              <li class='list-group-item'> 
+                {{ employee.adresses  | json}}
+              </li>
+            </ul>
+
+          </div>
+        </div>
+
+        <app-footer></app-footer>
+      </div>
+    </div>
+  </div>
+</div>

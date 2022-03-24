@@ -1,0 +1,74 @@
+
+
+
+
+
+<app-header></app-header>
+
+<div id="layoutSidenav">
+
+  <app-left-menu></app-left-menu>
+
+  <div id="layoutSidenav_content">
+
+
+        <div class='container m-4 p-2'>
+           
+            <div class="container">
+
+                <table  class='table'
+            datatable [dtOptions]="dtOptions"
+             >
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Full name</th>
+                        <th>Contrat </th>
+                        <th>Etat</th>
+                        <th>Type </th>
+                        <th>Salaire</th>
+                        <th>embauche le</th>
+                        <th>operation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let employee of employees">
+                        <td> {{ employee.id }} </td>
+                        <td> {{ employee.nom || employee.prenom | titlecase }}  </td>
+                        <td> {{ employee.contrat_actuelle }} </td>
+                        <td>
+                            <span class='badge bg-success' *ngIf=" employee.etat ==='actif' " > {{ employee.etat }}</span>
+                            <span class='badge bg-danger' *ngIf=" employee.etat ==='inactif' " > {{ employee.etat }}</span>
+                        </td>
+                        <td> {{ employee.typeContrat | titlecase }} </td>
+                        <td> {{ employee.salaire  }} </td>
+                        <td> {{ employee.dateEmbauche  }} </td>
+
+                        <td class="d-flex justify-content-center">
+                            <span (click)="getEmployee( employee.id )" class="text-success m-1">
+                                <i class='fas fa-edit'></i>
+                            </span>
+                            <span (click)="employeeInfo( employee.id )" class="text-success m-1">
+                                <i class='fas fa-eye'></i>
+                            </span>
+                            <span
+                            (click)='deleteEmployee( employee.id )'
+                            class="text-danger m-1">
+                            <i class='fas fa-trash'></i>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+        </div>
+
+      
+      
+      <app-footer></app-footer>
+
+  </div>
+
+
+</div>

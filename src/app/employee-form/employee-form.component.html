@@ -1,0 +1,322 @@
+
+<app-header></app-header>
+
+<div id="layoutSidenav">
+
+  <app-left-menu></app-left-menu>
+
+  <div id="layoutSidenav_content">
+
+
+        <div class='container mt-4'>
+           
+
+           
+            <div class="card bg-white rounded-0" style="width:95%;margin:auto">
+
+                <div class="card-header">
+                  <div class="card-text">employee form register</div>
+                </div>
+
+
+                <div class="card-body">
+
+                    <form (ngSubmit)="onSubmit()" novalidate [formGroup]="myForm" class='container form px-4 py-2' style="width:100%;margin:auto;"> 
+     
+     
+                        <!-- employee information -->
+                        <div class="form-row">
+    
+    
+                            <div class="row mt-2">
+                                    <!-- <input type="number" name='id' formControlName='id' /> -->
+    
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+    
+                                    <label class="form-label" for="nom">First name</label>
+                                    <input type="text" formControlName="nom" id="nom" name="nom"
+                                    [ngClass]="{
+                                      'form-control form-control-sm rounded-0' : true,
+                                      'is-valid' : myForm.controls['nom']?.valid && myForm.controls['nom']?.touched,
+                                      'is-invalid' : myForm.controls['nom']?.invalid && myForm.controls['nom']?.touched
+                                    }"
+                                    placeholder="First name ...."
+                                    />
+    
+                                    <small *ngIf="myForm.controls['nom']?.errors?.['required'] && myForm.controls['nom']?.touched " class="text-danger">Field error</small>
+                                    <small *ngIf="myForm.controls['nom']?.errors?.['maxlength'] && myForm.controls['nom']?.touched " class='text-danger'>Nom trop long</small>
+                                    <small *ngIf="myForm.controls['nom']?.errors?.['minlength'] && myForm.controls['nom']?.touched " class='text-danger'>Nom trop court</small>
+    
+                                </div>
+    
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+    
+                                    <label class="form-label" for="prenom">First name</label>
+                                    <input type="text" formControlName="prenom" id="prenom" name='prenom'
+                                    [ngClass]="{
+                                      'form-control form-control-sm rounded-0' : true  ,
+                                      'is-valid' : myForm.controls?.['prenom']?.valid  && myForm.controls?.['prenom']?.touched,
+                                      'is-invalid' : myForm.controls?.['prenom']?.invalid &&  myForm.controls?.['prenom']?.touched
+                                    }"
+                                    placeholder="Last name ...."
+                                    />
+    
+                                    <small *ngIf="myForm.controls?.['prenom']?.errors?.['required'] && myForm.controls?.['prenom']?.touched" class="text-danger">Field error</small>
+                                    <small *ngIf="myForm.controls?.['prenom']?.errors?.['minlength'] && myForm.controls?.['prenom']?.touched" class="text-danger">Champ trop court</small>
+                                    <small *ngIf="myForm.controls?.['prenom']?.errors?.['maxlength'] && myForm.controls?.['prenom']?.touched" class="text-danger">Champ trop long</small>
+    
+                                </div>
+    
+                            </div>
+
+
+                            <div class="row mt-2">
+    
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+    
+                                    <label class="form-label" for="salaire">Salary</label>
+                                    <input type="number" formControlName="salaire" id="salaire" name="salaire"
+                                    [ngClass]="{
+                                      'form-control form-control-sm rounded-0' : true  ,
+                                      'is-valid' : myForm.controls?.['salaire']?.valid && myForm.controls?.['salaire']?.touched ,
+                                      'is-invalid' : myForm.controls?.['salaire']?.invalid && myForm.controls?.['salaire']?.touched
+                                    }"
+                                    placeholder="Salary ...."
+                                    />
+    
+                                    <small *ngIf=" myForm.controls?.['salaire']?.errors?.['required'] && myForm.controls?.['salaire']?.touched" class="text-danger">Field error</small>
+                                    <small *ngIf=" myForm.controls?.['salaire']?.errors?.['minlength'] && myForm.controls?.['salaire']?.touched" class="text-danger"> error min length</small>
+                                    <small *ngIf=" myForm.controls?.['salaire']?.errors?.['maxlength'] && myForm.controls?.['salaire']?.touched " class="text-danger">error max length</small>
+                                    <small *ngIf="myForm.controls?.['salaire']?.errors?.['min'] && myForm.controls?.['salaire']?.touched " class="text-danger">Salaire trop petit</small>
+                                    <small *ngIf="myForm.controls?.['salaire']?.errors?.['max'] && myForm.controls?.['salaire']?.touched " class="text-danger">Field error</small>
+                                </div>
+    
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+    
+                                    <label class="form-label" for="typeContrat">Type contrat</label>
+                                    <select id="typeContrat"  [ngClass]="{
+                                        'form-control form-control-sm' : true ,
+                                        'is-valid': myForm.controls?.['typeContrat']?.valid && myForm?.controls?.['typeContrat']?.touched ,
+                                        'is-invalid': !myForm.controls?.['typeContrat']?.valid && myForm?.controls?.['typeContrat']?.touched
+                                    }" name="typeContrat" formControlName="typeContrat">
+                                        <!-- <option [ngValue]="null"></option> -->
+                                        <option class="p-2" value ="CDD"> Contrat CDD </option>
+                                        <option class="p-2" value ="CDI"> Contrat CDI </option>
+                                    </select>
+    
+    
+                                </div>
+    
+                            </div>
+    
+
+                            <div class="row mt-2">
+
+                               <div class="col-lg-6 col-md-6 col-sm-12 mt-2 d-flex justify-content-start">
+                                   
+                                <div class='form-check form-switch'>
+                                    <input type="checkbox" id="contrat_actuelle"
+                                    formControlName="contrat_actuelle"
+                                    name="contrat_actuelle"
+                                    [ngClass]="{
+                                        'm-1 p-2 form-check-input':true ,
+                                        'is-valid' : myForm.controls?.['contrat_actuelle']?.valid && myForm.controls?.['contrat_actuelle']?.touched ,
+                                        'is-invalid' : myForm.controls?.['contrat_actuelle']?.invalid && myForm.controls?.['contrat_actuelle']?.touched
+                                    }"
+                                    />
+                                    <label for="contrat_actuelle" class="form-check-label"> <b>contrat actuel</b></label>
+                                </div>
+                               
+
+                               </div>
+
+                               <div class="col-lg-6 col-md-6 col-sm-12 mt-2 d-flex justify-content-start">
+                               
+                                    <div class='form-check form-switch'>
+                                        <input type="checkbox" id="etat"
+                                        formControlName="etat"
+                                        name="etat"
+                                        [ngClass]="{
+                                            'm-1 p-2 form-check-input' :true ,
+                                            'is-valid' : myForm.controls?.['etat']?.valid && myForm.controls?.['etat']?.touched ,
+                                            'is-invalid' : myForm.controls?.['etat']?.invalid && myForm.controls?.['etat']?.touched
+                                        }"
+                                        />
+                                        <label for="etat" class="form-check-label"><b>etat</b></label>
+
+                                    </div>
+
+                               </div>
+
+                            </div>
+    
+    
+                        </div>
+    
+    
+                        <div class="text-muted pt-2 text-uppercase border-top-1"><b>Phone(s)</b></div>
+    
+                        <!-- phone information -->
+                        <div class="row" formArrayName="phones">
+
+                            <div clas='row'*ngFor="let phone of phonesArray.controls ; let p = index" [formGroupName]='p'>
+                                <div class="d-flex justify-content-end ">
+                                    <span class=" text-success m-2"  (click)="addNewPhone()"> <i class="fas fa-plus"></i>  </span>
+                                    <span class="text-danger m-2" (click)="removePhone(p)"> <i class="fas fa-minus "></i> </span>
+                                </div>
+
+                                <!-- <input type="number" name='id' formControlName='id' /> -->
+    
+                                <label for="phone"><b>Phone number</b></label>
+                                <input
+                                 formControlName="phone"
+                                 id="phone"
+                                 name="phone" 
+                                 [ngClass]="{
+                                     'form-control form-control-sm':true ,
+                                     'is-valid' : phone.get('phone')?.valid && phone?.touched,
+                                     'is-invalid' : phone.get('phone')?.invalid && phone?.touched
+                                 }"
+                                 placeholder="Phone number ..."
+                                />
+                                
+                                 <small *ngIf=" phone.get('phone')?.errors?.['required'] && phone.get('phone')?.touched " class="text-danger">Field required</small>
+                                 <small *ngIf=" phone.get('phone')?.errors?.['minlegnth'] && phone.get('phone')?.touched " class="text-danger">min error</small>
+                                 <small *ngIf=" phone.get('phone')?.errors?.['maxlength'] && phone.get('phone')?.touched " class="text-danger">error max length</small>
+                                 <small *ngIf=" phone.get('phone')?.errors?.['pattern'] && phone.get('phone')?.touched " class="text-danger">Error pattern</small>
+                            </div>
+                        </div>
+    
+    
+    
+
+
+                        <div class="text-muted pt-2 text-uppercase border-top-1"><b>Adresse(s)</b></div>
+
+                        <!-- adresses information -->
+                        <div class="row" formArrayName="adresses">
+
+                           <div *ngFor="let adresse of adressesArray.controls; let a = index" [formGroupName]="a">
+                            <div class="d-flex justify-content-end">
+                                <span class=" text-success m-2" (click)="addNewAdress()" > <i class="fas fa-plus"></i>  </span>
+                                <span class="text-danger m-2" (click)="removeAdresse(a)" > <i class="fas fa-minus "></i> </span>
+                            </div>
+
+                            <div class="row">
+                                    <!-- <input type="number" name='id' formControlName='id' /> -->
+
+                                <div class="col-lg-4 col-md-4 col-sm-12">
+
+                                    <label for="rue"><b>Rue</b></label>
+                                    <input type="text" 
+                                        id="rue"
+                                        formControlName="rue"
+                                        name="rue"
+                                        [ngClass]="{
+                                            'form-control form-control-sm':true ,
+                                            'is-valid' : adresse.get('rue')?.valid && adresse.get('rue')?.touched ,
+                                            'is-invalid' : adresse.get('rue')?.invalid && adresse.get('rue')?.touched
+                                        }"
+    
+                                        placeholder="Rue ..."
+                                    />
+                                    <small *ngIf="adresse.get('rue')?.errors?.['required'] && adresse.get('rue')?.touched " class="text-danger">Field  required</small>
+                                    <small *ngIf=" adresse.get('rue')?.errors?.['minlength'] && adresse.get('rue')?.touched " class="text-danger">Error min legnth</small>
+                                    <small *ngIf=" adresse.get('rue')?.errors?.['maxlength'] && adresse.get('rue')?.touched " class="text-danger">Error max legnth</small>
+                                </div>
+    
+                                <div class="col-lg-4 col-md-4 col-sm-12">
+    
+                                    <label for="ville"><b>Ville</b></label>
+                                    <input type="text" 
+                                        id="rue"
+                                        formControlName="ville"
+                                        name="ville"
+                                        [ngClass]="{
+                                            'form-control form-control-sm':true ,
+                                            'is-valid' : adresse.get('ville')?.valid && adresse.get('ville')?.touched ,
+                                            'is-invalid' : adresse.get('ville')?.invalid && adresse.get('ville')?.touched
+                                        }"
+    
+                                        placeholder="Ville ..."
+                                    />
+    
+                                    <small *ngIf="adresse.get('ville')?.errors?.['required'] && adresse.get('ville')?.touched" class="text-danger">Field error</small>
+                                    <small *ngIf="adresse.get('ville')?.errors?.['minlength'] && adresse.get('ville')?.touched" class="text-danger">Error min length</small>
+                                    <small *ngIf="adresse.get('ville')?.errors?.['maxlength'] && adresse.get('ville')?.touched" class="text-danger">Error max length</small>
+    
+                                </div>
+    
+    
+                                <div class="col-lg-4 col-md-4 col-sm-12">
+    
+                                    <label for="codePostal"><b>Code postal</b></label>
+                                    <input type="text" 
+                                        id="rue"
+                                        formControlName="codePostal"
+                                        name="codePostal"
+                                        [ngClass]="{
+                                            'form-control form-control-sm':true ,
+                                            'is-valid' :  adresse.get('codePostal')?.valid && adresse.get('codePostal')?.touched ,
+                                            'is-invalid' : adresse.get('codePostal')?.invalid && adresse.get('codePostal')?.touched
+                                        }"
+    
+                                        placeholder="Code postal ..."
+                                    />
+    
+                                    <small *ngIf="adresse.get( 'codePostal')?.errors?.['required'] && adresse.get('codePostal')?.touched " class="text-danger">Field required</small>
+                                    <small *ngIf="adresse.get( 'codePostal')?.errors?.['minlength'] && adresse.get('codePostal')?.touched " class="text-danger">Field must have 5 characters</small>
+                                    <small *ngIf=" adresse.get( 'codePostal')?.errors?.['maxlength'] && adresse.get('codePostal')?.touched " class="text-danger">Field must have 5 characters</small>
+    
+                                </div>
+
+                            </div>
+                           </div>
+    
+                        </div>
+    
+    
+                        <!-- button submit and reset -->
+                        <div class="form-group d-flex justify-content-end mt-2">
+    
+                            <button
+                            [ngClass]="{
+                               'btn btn-danger btn-sm mx-2' : true 
+                            }"
+                            (click)="onReset()"
+                            >reset</button>
+
+                            <button
+                            [ngClass]="{
+                                'btn btn-primary btn-sm mx-2' :true
+                            }"
+                            type="submit"
+                            [disabled]="myForm.invalid"
+                            > save </button>
+    
+                           
+    
+                        </div>
+    
+    
+                       </form>
+    
+    
+
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+      
+      
+      <app-footer></app-footer>
+
+  </div>
+
+
+</div>

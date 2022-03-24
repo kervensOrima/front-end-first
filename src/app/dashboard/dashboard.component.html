@@ -1,0 +1,129 @@
+<app-header></app-header>
+
+<div id="layoutSidenav">
+  <app-left-menu></app-left-menu>
+
+  <div id="layoutSidenav_content">
+    <div class="container-fluid mt-4">
+      <div class="card">
+        <div class="card-header">employee info</div>
+        <div class="card-body bg-white">
+          <h5
+            [ngClass]="{
+              'alert alert-info info': true
+            }"
+            *ngIf="value === 'etat'"
+            class="text-muted"
+          >
+            <b> Liste des employees {{ etat ? "actif" : "inactif" }} !! </b>
+          </h5>
+
+          <h5
+            [ngClass]="{
+              'alert alert-info info': true
+            }"
+            *ngIf="value === 'contrat'"
+            class="text-muted"
+          >
+            <b>
+              Liste des employees par type contrat
+              {{ typeContrat ? "CDD" : "CDI" }} !!</b
+            >
+          </h5>
+
+          <h5
+            [ngClass]="{
+              'alert alert-info info': true
+            }"
+            *ngIf="value === 'noContrat'"
+            class="text-muted"
+          >
+            <b
+              >Liste des employees
+              {{ contrat ? "sans contrat!" : " qui ont un contrat!" }} !!</b
+            >
+          </h5>
+          <hr class="border-primary-1" />
+
+          <div class="text-right button-group d-flex justify-content-end">
+           
+             <b  (click)="getEmployeeBy('etat')"
+             [ngClass]="{
+               'm-2': true
+             }">               
+              <!-- {{ etat ? "inactif" : "actif " }} -->
+                      <span class="text-primary" *ngIf="etat" ><i class="fas fa-toggle-on"></i></span>
+                      <span class="text-primary" *ngIf="!etat" ><i class="fas fa-toggle-off"></i></span>
+             </b>
+           
+          <b (click)="getEmployeeBy('contrat')"
+          [ngClass]="{
+            'm-2 text-primary': true
+          }">
+              {{ typeContrat ? "cdi" : "cdd" }}
+
+          </b>          
+          
+            <b  (click)="getEmployeeBy('noContrat')"
+            [ngClass]="{
+              'm-2': true
+            }">
+              <!-- {{ contrat ? "No contrat" : "Contrat" }} -->
+
+              <span class="text-success" *ngIf="!contrat" ><i class="fas fa-toggle-on"></i></span>
+              <span class="text-success" *ngIf="contrat" ><i class="fas fa-toggle-off"></i></span>
+            </b>
+          </div>
+
+          <table
+            class="table"
+            data-toggle="table"
+            data-search="true"
+            data-pagination="true"
+            datatable [dtOptions]="dtOptions"
+          >
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Full name</th>
+                <th>Contrat</th>
+                <th>Etat</th>
+                <th>Type contrat</th>
+                <th>Salaire</th>
+                <th>Date embauche</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employee of employees">
+                <td>{{ employee.id }}</td>
+                <td>
+                  {{ employee.nom | uppercase }}
+                  {{ employee.prenom | titlecase }}
+                </td>
+                <td>{{ employee.contrat_actuelle }}</td>
+                <td>
+                  <span
+                    class="badge bg-success"
+                    *ngIf="employee.etat === 'actif'"
+                  >
+                    {{ employee.etat }}</span
+                  >
+                  <span
+                    class="badge bg-danger"
+                    *ngIf="employee.etat === 'inactif'"
+                  >
+                    {{ employee.etat }}</span
+                  >
+                </td>
+                <td>{{ employee.typeContrat }}</td>
+                <td>{{ employee.salaire }}</td>
+                <td>{{ employee.dateEmbauche }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>
