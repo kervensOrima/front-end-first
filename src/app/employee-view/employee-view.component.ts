@@ -10,7 +10,7 @@ import { EmployeeService } from '../service/employee.service';
 })
 export class EmployeeViewComponent implements OnInit {
 
-  employee!:Employee ;
+  employee?:Employee ;
 
   constructor( 
     private activatedRoute:ActivatedRoute , 
